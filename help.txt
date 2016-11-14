@@ -1,0 +1,26 @@
+Hi!
+Welcome to my Filelist.ro ratio maker. This is a brief tutorial on how to use the app and configure it properly. Unlike other ratio makers, this one does not send fake data to the tracker, so it's completely safe to use. This app will check the torrents page every 30 minutes and select the best torrents that will improve your ratio while also helping the comunity. 
+
+This app will ONLY download the .torrents file. You have to configure your torrent client (BitTorrent, uTorrent, etc) to automatically load the files and download them.
+
+The efficiency of this app only depends on your upload speed.
+
+There are two ways to authenticate yourself:
+- The recommanded one: Enter your username and password for Filelist.ro and let the app do the rest.
+- The more advanced one: Login on Filelist.ro with your browser. After that, go to the section where the cookies are stored in the Options menu of your browser, and complete the requested fields from the Settings tab with the data from your browser. This way, if you do not trust this application, you can always change your password because this method does not need your username and password to work. 
+
+You should NOT touch the SeedLeechRatio and FreeleechOnly fields unless you know what you're doing.
+
+To configure this app:
+- Enter your login data using either method specified above
+- Select a download folder. This is the folder where the .torrent files will be downloaded
+- Click Save to confirm your entered data
+- Go to the Run Tab and click Start
+- Leave this app open (it works when it's minimised too). 
+
+To configure your torrent client:
+- Go to the Preferences menu
+- Find the Directories submenu
+- Select the "automatically load .torrents from" and select the folder you used in the configuration of this app
+- DO NOT tick the "move torrents" or "Delete torrents" checkboxes, if any
+- Tick the "Put new downloads in" checkbox, and select a folder on your hard disk where the torrent itself (NOT the .torrent files) will be downloaded.
