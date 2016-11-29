@@ -51,6 +51,10 @@ public class GUI extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		System.setProperty("http.proxyHost", "127.0.0.1");
+	    System.setProperty("https.proxyHost", "127.0.0.1");
+	    System.setProperty("http.proxyPort", "8888");
+	    System.setProperty("https.proxyPort", "8888");
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 		} catch (Throwable e) {
@@ -73,7 +77,7 @@ public class GUI extends JFrame {
 		saveman = new SaveManager();
 		thisInstance = this;
 		setResizable(false);
-		setTitle("FilelistCrawler by KiralyCraft V1.0");
+		setTitle("FilelistCrawler by KiralyCraft V1.1");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 386);
 		contentPane = new JPanel();

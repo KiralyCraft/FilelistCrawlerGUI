@@ -107,7 +107,6 @@ public class RunThread extends Thread implements Runnable
 		{
 			if (Thread.currentThread().isInterrupted())
 			{	
-				System.out.println("f");
 				break;
 			}
 			try 
@@ -171,12 +170,13 @@ public class RunThread extends Thread implements Runnable
 	/////////////////////////////////////////
 	public String getTorrentFilename(String str)
 	{
-		try 
-		{
-			return URLDecoder.decode(str.substring(str.lastIndexOf("=")+1,str.length()),"UTF-8").replace("\"", "");
-		} catch (UnsupportedEncodingException e) {
-			return str.substring(str.lastIndexOf("=")+1,str.length()).replace("\"", "");
-		}
+//		try 
+//		{
+//			return URLDecoder.decode(str.substring(str.lastIndexOf("=")+1,str.length()),"UTF-8").replace("\"", "");
+//		} catch (UnsupportedEncodingException e) {
+//			return str.substring(str.lastIndexOf("=")+1,str.length()).replace("\"", "");
+//		}
+		return str.trim().replace(" ", ".")+".torrent";
 	}
 	/////////////////////////////////////
 	///////////WEB INTERFACE/////////////
@@ -336,9 +336,7 @@ public class RunThread extends Thread implements Runnable
 			  int seeders = 0;
 			  ////////////////////////////
 	          Elements torrentData = link.select("div.torrenttable");
-	          
-	          torrentName = torrentData.get(1).select("a[href]").get(0).text();
-	          
+	          torrentName = torrentData.get(1).select("a[href]").attr("title");
 	          for (Element e:torrentData.get(1).getElementsByTag("img"))
 	          {
 	        	  if (e.attr("src").contains("freeleech"))
@@ -347,9 +345,7 @@ public class RunThread extends Thread implements Runnable
 	        		  break;
 	        	  }
 	          }
-	          
-	          downloadLink = torrentData.get(2).select("a[href]").get(0).attr("href");
-
+	          downloadLink = torrentData.get(3).select("a[href]").get(0).attr("href");
 	          
 	          Element torrentSizeDiv = torrentData.get(6);
 	          String torrentSizeData[] = torrentSizeDiv.text().split("\\ ");
@@ -371,7 +367,7 @@ public class RunThread extends Thread implements Runnable
 	    }
 	}
 
-	private int parseTorrentData() 
+	private int parseTorrentData() throws Exception 
 	{
 		int torrentsDownloaded = 0;
 		int totalSize=0;
@@ -386,7 +382,7 @@ public class RunThread extends Thread implements Runnable
 				log(td.torrentName+" - Checking requirements ...");
 				if (downloadFolder.getFreeSpace()/1024/1024/1024>=(totalSize+td.downloadSize))
 				{
-					if (!new File(downloadFolder.getAbsolutePath()+File.separator+getTorrentFilename(td.downloadLink)).exists())
+					if (!new File(downloadFolder.getAbsolutePath()+File.separator+getTorrentFilename(td.torrentName)).exists())
 					{
 						totalSize+=td.downloadSize;
 						log("Okay! Downloading torrent: "+td.torrentName);
